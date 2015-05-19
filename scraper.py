@@ -18,7 +18,7 @@ lis = root.get_element_by_id('deputes').cssselect('li')
 data = []
 
 for li in lis:
-    member = {}
+    member = {'chamber': 'National Assembly'}
 
     member['details_url'] = li.cssselect('a')[0].get('href')
 
