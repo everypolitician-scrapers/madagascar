@@ -18,7 +18,10 @@ lis = root.get_element_by_id('deputes').cssselect('li')
 data = []
 
 for li in lis:
-    member = {'chamber': 'National Assembly'}
+    member = {
+        'chamber': 'National Assembly',
+        'term_id': 2013,
+        }
 
     member['details_url'] = li.cssselect('a')[0].get('href')
 
@@ -66,3 +69,9 @@ for li in lis:
     data.append(member)
 
 scraperwiki.sqlite.save(unique_keys=['name'], data=data)
+
+legislatures_data = [
+    {'id': 2013, 'name': '2013-1018', 'start_date': '2013-12-20', 'end_date': 2018},
+    ]
+
+scraperwiki.sqlite.save(unique_keys=['id'], data=legislatures_data, table_name='terms')
