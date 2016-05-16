@@ -6,6 +6,7 @@
 import scraperwiki
 import requests
 import lxml.html
+import urlparse
 
 # source_url = 'http://www.assemblee-nationale.mg/?page_id=6549'
 source_url = 'http://www.assemblee-nationale.mg/?page_id=5217'
@@ -24,6 +25,9 @@ for li in lis:
         }
 
     member['details_url'] = li.cssselect('a')[0].get('href')
+
+    split_url = urlparse.urlsplit(member['details_url'])
+    member['page_id'] = urlparse.parse_qs(split_url.query)['depute'][0]
 
     img = li.cssselect('img')[0]
     member['image'] = img.get('src')
@@ -68,7 +72,7 @@ for li in lis:
 
     data.append(member)
 
-scraperwiki.sqlite.save(unique_keys=['name'], data=data)
+scraperwiki.sqlite.save(unique_keys=['page_id'], data=data)
 
 legislatures_data = [
     {'id': 2013, 'name': '2013-1018', 'start_date': '2013-12-20', 'end_date': 2018},
