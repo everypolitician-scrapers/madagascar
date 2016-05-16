@@ -70,7 +70,10 @@ for li in lis:
 # 'Province:'
 # 'R\xe9gion d'origine:'
         else:
-            import pdb;pdb.set_trace()
+            message = u"Unknown key: {key} with value {val} for {url}".format(
+                key=key, val=val, url= member['details_url']
+            )
+            raise Exception(message)
 
     data.append(member)
 
