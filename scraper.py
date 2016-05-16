@@ -53,8 +53,10 @@ for li in lis:
             member['region'] = val
         elif key == u'Parti:':
             member['party'] = val
-        elif key == u'Fonction parlementaire:':
-            member['executive'] = val
+        # For a large number of people this value is just a Wordpress error; after
+        # some discussion we've decided to just leave it out...
+        # elif key == u'Fonction parlementaire:':
+        #     member['executive'] = val
         elif key == u'Age:':
             # I see no point in us storing age, that'll just go out of date
             continue
